@@ -16,4 +16,8 @@ import { SharedModule } from '@shared/shared.module';
 })
 export class AppComponent {
   title = 'kondate';
+
+  constructor() {
+
+  }
 }
