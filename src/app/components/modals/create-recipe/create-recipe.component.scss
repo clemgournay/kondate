@@ -1,0 +1,76 @@
+@import '../../../styles/modal.scss';
+
+.modal {
+  .window {
+    .content {
+
+      .fields {
+        .field {
+          margin-bottom: 20px;
+          &.title {
+            input {
+              width: 100%;
+              text-align: center;
+            }
+          }
+
+          label {
+            display: block;
+            margin-bottom: 10px;
+          }
+
+          input {
+            width: 100%;
+          }
+
+          .ingredient-list {
+            margin-top: 10px;
+
+            input {
+              border-radius: 5px 5px 0px 0px;
+            }
+
+            &.choice {
+              background: rgba(0, 0, 0, 0.1);
+              border-radius: 0px 0px 5px 5px;
+
+              .ingredients {
+                .ingredient {
+                  flex: 1 1 auto;
+                  text-align: center;
+                }
+              }
+            }
+
+            .no-result {
+              font-style: italic;
+              color: grey;
+              padding: 10px;
+            }
+
+            .ingredients {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 10px;
+              padding: 10px;
+
+              .ingredient {
+                padding: 10px 20px;
+                border-radius: 5px;
+                background: grey;
+                color: white;
+                cursor: pointer;
+
+                &.selected {
+                  background: $gradient;
+                }
+              }
+
+
+            }
+          }
+        }
+      }
+    }
+  }
+}

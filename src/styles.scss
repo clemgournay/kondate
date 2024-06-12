@@ -1,0 +1,32 @@
+@import 'https://fonts.googleapis.com/css2?family=Shippori+Antique+B1&display=swap';
+
+@import './app/styles/theme.scss';
+
+html, body {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Shippori Antique B1", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.tac { text-align: center; }
+
+main {
+  height: calc(100% - 50px);
+  padding-top: 70px;
+}
+
+.no-result {
+  font-style: italic;
+  color: grey;
+}

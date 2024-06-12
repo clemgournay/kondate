@@ -1,0 +1,43 @@
+$primary: rgb(170, 0, 255);
+$gradient: linear-gradient(to right,  #795bff 0%,#c561ed 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+$border: 1px solid rgba(0, 0, 0, 0.2);
+
+.btn {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  background: grey;
+  outline: none;
+  border: none;
+
+  font-family: "Shippori Antique B1", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &.primary {
+    background: $gradient;
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .ng-fa-icon {
+    margin-right: 5px;
+  }
+}
+
+input {
+  background: rgba(0, 0, 0, 0.1);
+  border: $border;
+  outline: none;
+  height: 40px;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}

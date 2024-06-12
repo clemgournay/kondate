@@ -1,0 +1,65 @@
+@import '../../../styles/modal.scss';
+@import '../../../styles/table.scss';
+
+.modal {
+  .window {
+    .content {
+
+      .search {
+        display: flex;
+        margin-bottom: 20px;
+        input {
+          width: calc(100% - 40px);
+          text-align: center;
+          border-radius: 5px 0px 0px 5px;
+        }
+        .btn {
+          width: 60px;
+          height: 40px;
+          padding: 0;
+          text-align: center;
+          line-height: 40px;
+          font-size: 24px;
+          border-radius: 0px 5px 5px 0px;
+        }
+      }
+
+
+
+      .recipe-cont {
+        .recipes {
+
+          .tr {
+            &.head {
+              .td {
+                &.actions {
+                  width: 100px;
+                }
+              }
+            }
+          }
+          .recipe {
+            .td {
+
+              .btn {
+                .ng-fa-icon {
+                  margin-right: 0;
+                }
+                &.delete {
+                  margin-left: 5px;
+                  background: darkred;
+                }
+              }
+
+            }
+          }
+        }
+
+        .no-result {
+          text-align: center;
+        }
+
+      }
+    }
+  }
+}

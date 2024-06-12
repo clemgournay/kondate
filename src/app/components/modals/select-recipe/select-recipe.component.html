@@ -1,0 +1,61 @@
+<div class="modal" [class.shown]="shown" [class.opened]="opened">
+  <div class="window">
+    <div class="title">
+      <fa-icon [icon]="faCalendarPlus"></fa-icon>
+      <span>{{title}}</span>
+      <div class="close" (click)="close()">
+        <fa-icon [icon]="faTimes"></fa-icon>
+      </div>
+    </div>
+    <div class="content">
+      <div class="controls">
+        <button type="button" class="btn primary" (click)="openCreateRecipe()">
+          <fa-icon [icon]="faPlusCircle"></fa-icon>
+          <span>レシピを追加</span>
+        </button>
+      </div>
+      <div class="search">
+        <input type="search" [(ngModel)]="searchText" placeholder="レシピや材料を検索">
+        <div class="btn primary">
+          <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+        </div>
+      </div>
+      <div class="recipe-cont">
+        @if (recipes.length > 0) {
+          <div class="table recipes">
+            <div class="tr head">
+              <div class="td title">レシピ名</div>
+              <div class="td photo tac">写真</div>
+              <div class="td ingredients">材料</div>
+              <div class="td actions tac">操作</div>
+            </div>
+            @for (recipe of getRecipes(); track recipe._id; let i = $index) {
+              <div class="tr recipe">
+                <div class="td">{{recipe.title}}</div>
+                <div class="td tac">
+                  @if (recipe.photo) {
+                    <img [src]="recipe.photo">
+                  } @else {
+                    <p class="no-result">写真が追加されていません。</p>
+                  }
+                </div>
+                <div class="td">{{recipe.ingredients.join('、')}}</div>
+                <div class="td tac">
+                  <button type="button" class="btn primary select" (click)="selectRecipe(recipe)">
+                    <fa-icon [icon]="faPlusCircle"></fa-icon>
+                  </button>
+                  <button type="button" class="btn delete" (click)="removeRecipe(recipe)">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                  </button>
+                </div>
+              </div>
+
+            }
+          </div>
+        } @else {
+          <p class="no-result">レシピが見つかりません。</p>
+        }
+      </div>
+    </div>
+  </div>
+</div>

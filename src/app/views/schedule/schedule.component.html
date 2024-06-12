@@ -1,0 +1,60 @@
+<main>
+
+  <div class="schedule">
+    <div class="table days">
+      <div class="tr head">
+        <div class="td tac">日付</div>
+        <div class="td tac">朝</div>
+        <div class="td tac">昼</div>
+        <div class="td tac">夜</div>
+      </div>
+      @for(day of days; track day) {
+        <div class="tr day tac">
+          <div class="td date tac">
+            <div class="full">{{day.date | date: 'M月d日'}}</div>
+            <div class="weekday">{{day.label[0]}}</div>
+          </div>
+          @for (recipe of day.recipes; track recipe; let i = $index) {
+            <div class="td tac">
+              @if (recipe) {
+                <div class="recipe">
+                  @if (recipe.photo) {
+                    <div class="photo" [style.backgroundImage]="'url(\'' + recipe.photo +'\')'"></div>
+                  } @else {
+                    <div class="photo">
+                      <button type="button" class="btn primary">
+                        <fa-icon [icon]="faCamera"></fa-icon>
+                        <span>写真追加</span>
+                      </button>
+                    </div>
+                  }
+                  <div class="title">{{recipe.title}} <fa-icon [icon]="faTrash" (click)="removeRecipe(day, i)"></fa-icon></div>
+                </div>
+              } @else {
+                <button type="button" class="btn primary" (click)="openSelectRecipeModal(day, i)">
+                  <fa-icon [icon]="faCalendarPlus"></fa-icon>
+                  <span>レシピ選択</span>
+                </button>
+              }
+            </div>
+          }
+
+        </div>
+      }
+    </div>
+  </div>
+  <div class="controls">
+    <div class="arrow prev" (click)="prevWeek()">
+      <fa-icon [icon]="faChevronLeft"></fa-icon>
+    </div>
+    <div class="weekinfo">
+      <span>{{getStartDate() | date: 'YYYY年M月d日'}} ～ {{getEndDate() | date: 'YYYY年M月d日'}}</span>
+    </div>
+    <div class="arrow next" (click)="nextWeek()">
+      <fa-icon [icon]="faChevronRight"></fa-icon>
+    </div>
+  </div>
+</main>
+
+<modal-select-recipe [title]="'レシピを選ぶ'" (requestCreateRecipeModal)="openCreateRecipe()"  #selectRecipeModal></modal-select-recipe>
+<modal-create-recipe [title]="'レシピを追加する'" #createRecipeModal></modal-create-recipe>

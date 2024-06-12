@@ -1,0 +1,52 @@
+<div class="modal has-footer" [class.shown]="shown" [class.opened]="opened">
+  <div class="window">
+    <div class="title">
+      <fa-icon [icon]="faBowlFood"></fa-icon>
+      <span>{{title}}</span>
+      <div class="close" (click)="close()">
+        <fa-icon [icon]="faTimes"></fa-icon>
+      </div>
+    </div>
+    <div class="content">
+      <div class="fields">
+        <div class="field title">
+          <input type="text" placeholder="レシピの名前" [(ngModel)]="recipeTitle">
+        </div>
+        <div class="field photo">
+          <label><fa-icon [icon]="faCamera"></fa-icon> 写真を追加する</label>
+          <input type="file" (change)="changedPhoto($event)" #file>
+        </div>
+        <div class="field main-ingredient">
+          <label>メイン材料を追加</label>
+
+          <div class="ingredient-list choice">
+            <input type="text" placeholder="材料を検索する" [(ngModel)]="ingredientSearch" (keydown)="onKeydown($event)">
+            @if (getIngredients().length > 0) {
+              <div class="ingredients">
+                @for (ingredient of getIngredients(); track ingredient.id) {
+                  <div class="ingredient" (click)="selectIngredient(ingredient)">{{ingredient.name}}</div>
+                }
+              </div>
+            } @else {
+              <div class="no-result">材料が見つかりません。材料を入力し、エンターキーで追加できます。</div>
+            }
+
+          </div>
+          <div class="ingredient-list selection">
+            <div class="ingredients">
+              @for (ingredient of selectedIngredients; track ingredient.id; let i = $index) {
+                <div class="ingredient selected" (click)="removeIngredient(i)">{{ingredient.name}}</div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <button type="button" class="btn primary" [disabled]="title.length === 0 || selectedIngredients.length === 0" (click)="createRecipe()">
+        <fa-icon [icon]="faFloppyDisk"></fa-icon>
+        <span>レシピを作成</span>
+      </button>
+    </div>
+  </div>
+</div>
