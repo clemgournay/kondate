@@ -95,22 +95,22 @@ export class ScheduleComponent {
       for (let day of this.days) {
         const targetYear = day.date.getFullYear();
         const targetMonth = day.date.getMonth();
-        const targetDay = day.date.getDay();
+        const targetDate = day.date.getDate();
 
         let i = 0, found = false;
         while (!found && i < days.length) {
           const date = new Date(days[i].date);
           const year = date.getFullYear();
           const month = date.getMonth();
-          const dateDay = date.getDay();
-          if (year === targetYear && month == targetMonth && dateDay === targetDay) found = true;
+          const dateDate = date.getDate();
+          console.log()
+          if (year === targetYear && month == targetMonth && dateDate === targetDate) found = true;
           else i++;
         }
 
         if (found) {
           const targetDay = days[i];
           day._id = targetDay._id;
-          console.log('FOUND TARGET DAY', targetDay);
           let index = 0;
           for (let recipeID of targetDay.recipes) {
             if (recipeID) {
